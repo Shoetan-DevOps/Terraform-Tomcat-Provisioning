@@ -3,7 +3,7 @@ resource "aws_instance" "tomcat" {
     instance_type = var.my-instance-type[0]
     key_name = var.my-key-pem
 
-    #user_data = 
+    user_data = file("${path.module}/install-tomcat.sh")
     security_groups = [aws_security_group.allow-tomcat.id]
 
     tags = {

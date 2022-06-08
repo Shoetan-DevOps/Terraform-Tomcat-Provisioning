@@ -1,8 +1,7 @@
 #define region
 variable "aws-region" {
     type = string
-    #default = "us-east-2"
-    #test if input works
+    default = "us-east-2"
 }
 
 variable "my-ami" {
