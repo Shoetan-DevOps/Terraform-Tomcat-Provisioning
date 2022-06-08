@@ -4,10 +4,10 @@ resource "aws_instance" "tomcat" {
     key_name = var.my-key-pem
 
     user_data = file("${path.module}/install-tomcat.sh")
-    security_groups = [aws_security_group.allow-tomcat.id]
+    vpc_security_group_ids = [aws_security_group.allow-tomcat-fw.id]
 
     tags = {
-      "name" = "Tomcat Sandbox"
+      "Name" = "Tomcat Sandbox"
       "source" = "Terraform"
     }
 }

@@ -23,14 +23,13 @@ cd /opt
 sudo yum install wget unzip -y
 
 # Step 3: Install Java jdk
-sudo wget sudo wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
-sudo yum install jdk-8u131-linux-x64.rpm -y
+sudo yum install java-1.8.0-openjdk-devel -y
 
 # Step 4: Download Toomcat & unzip & Rename
-sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.55/bin/apache-tomcat-9.0.55.tar.gz
-sudo tar -xvf apache-tomcat-9.0.55.tar.gz
-sudo rm apache-tomcat-9.0.55.tar.gz
-sudo mv apache-tomcat-9.0.55 tomcat9
+sudo wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
+sudo tar -xvf apache-tomcat-9.0.63.tar.gz
+sudo rm apache-tomcat-9.0.63.tar.gz
+sudo mv apache-tomcat-9.0.63 tomcat9
 
 # Step 5: Set ownership, group & permission for Tomcat
 sudo chmod 777 -R /opt/tomcat9
@@ -39,8 +38,7 @@ sudo chmod 777 -R /opt/tomcat9
 sudo ln -s /opt/tomcat9/bin/startup.sh /usr/bin/starttomcat
 sudo ln -s /opt/tomcat9/bin/shutdown.sh /usr/bin/stoptomcat
 sudo chmod 777 -R /opt/tomcat9
-starttomcat
 
 # Step 6: Start Tomcat
-starttomcat
+sudo starttomcat
 

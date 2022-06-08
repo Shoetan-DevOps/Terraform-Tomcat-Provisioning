@@ -1,33 +1,35 @@
-resource "aws_security_group" "allow-tomcat" {
-    name = "allow-tomcat"
-    description = "allow tomcat connection"
-
+resource "aws_security_group" "allow-tomcat-fw" {
+    name        = "allow_tomcat_fw"
+    description = "Allow SSH inbound traffic"
+    #vpc_id = aws_vpc.main.id  
+  
     ingress {
-        cidr_blocks = [ "0.0.0.0/0" ]
-        description = "allow ssh"
-        from_port = 22
-        #ipv6_cidr_blocks = [ "value" ]
-        #prefix_list_ids = [ "value" ]
-        protocol = "tcp"
-        #security_groups = [ "value" ]
-        #self = false
-        to_port = 22
+        description      = "TLS from VPC"
+        from_port        = 22
+        to_port          = 22
+        protocol         = "tcp"
+        cidr_blocks      = ["0.0.0.0/0"]
+        #ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
     }
 
     ingress {
-        cidr_blocks = ["0.0.0.0/0"]
-        description = "allow tomcat"
-        from_port = 8080
-        to_port = 8080
-        protocol = "tcp"
+        description      = "TLS from VPC"
+        from_port        = 8080
+        to_port          = 8080
+        protocol         = "tcp"
+        cidr_blocks      = ["0.0.0.0/0"]
+       #ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
     }
 
     egress {
-        cidr_blocks = [ "0.0.0.0/0" ]
-        description = "outbound"
-        from_port = 0
-        protocol = "-1"
-        to_port = 0
+        from_port        = 0
+        to_port          = 0
+        protocol         = "-1"
+        cidr_blocks      = ["0.0.0.0/0"]
+       #ipv6_cidr_blocks = ["::/0"]
     }
-  
+
+    tags = {
+      "Name" = "allow-tomcat-fw"
+    }
 }

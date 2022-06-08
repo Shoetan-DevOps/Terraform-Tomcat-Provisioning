@@ -12,4 +12,6 @@ Pre-Reqs:
 ``` sh
 1. Automate Server Provisioning
 2. Run Tomcat Installation Script
+3. login to server & allow extrnal access ==> /opt/tomcat9/webapps/META-INF/context.xml
+4. Create tomcat users
 ```
